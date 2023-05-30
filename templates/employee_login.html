@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>HTML5 UP IMAX</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+</head>
+<body class="landing is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="#"> - 第 四 组 - </a> 张 思 彤 & 张 景 深 </h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="/imax" class="button">👈 退 出 登 录 </a></li>
+                <li><a href="/sign/up" class="button"> 点 击 注 册 </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner" style="padding-top: 6%;">
+        <div class="box" style="width: 60%; margin: 0 auto;">
+            <form method="post" action="#" name="form_log_in">
+                <div class="row gtr-uniform gtr-50">
+
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 7%; color: black;" class=""> 您 的 员 工 编 号</div>
+                    </div>
+                    <div class="col-9 col-12-mobilep">
+                        <input type="text" name="user_name" value=""
+                               placeholder={{reforce}} style="color:black;">
+                    </div>
+
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 7%; color: black;" class=""> 您 的 密 码</div>
+                    </div>
+
+                    <!-- 此处做判断 - 若是用户前一次输入错误则提示输入错误并重置输入框 -->
+                    <div class="col-9 col-12-mobilep">
+                        <input type="password" name="password" value="" placeholder=" 请 输 入 您 的 密 码 " style="color: black;">
+                    </div>
+
+                    <div class="col-12">
+                        <ul class="actions special">
+                            <li><input type="submit" value=" 点 击 登 录 " class="fit" onclick="return _submit()"
+                                       style="color: white; background-color: #504F59;"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; 欢迎关注我们的平台 ~</li>
+            <li> 设计者: <a href="#"> 张思彤 & 张景深</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.dropotron.min.js"></script>
+<script src="../static/js/jquery.scrollex.min.js"></script>
+<script src="../static/js/browser.min.js"></script>
+<script src="../static/js/breakpoints.min.js"></script>
+<script src="../static/js/util.js"></script>
+<script src="../static/js/main.js"></script>
+<script language="JavaScript">
+    function _submit(){
+        var user_name = document.form_log_in.user_name.value;
+        var password = document.form_log_in.password.value;
+        if (user_name.length < 1) {
+            alert('用户姓名不能为空');
+            return false;
+        }
+        if ( password.length < 1) {
+            alert('密码输入不能为空');
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

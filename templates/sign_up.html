@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>HTML5 UP IMAX</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+</head>
+<body class="landing is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html"> - 第 四 组 - </a> 张 思 彤 & 张 景 深 </h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="/imax" class="button">👈 退 出 注 册 </a></li>
+                <li><a href="/login/in" class="button"> 点 击 登 录 </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner" style="padding-top: 6%;">
+        <div class="box" style="width: 60%; margin: 0 auto;">
+            <form method="post" action="#" name="form_login">
+                <div class="row gtr-uniform gtr-50">
+                    <style>.xrequired:before {
+						content: '* ';
+						color: red;
+						vertical-align: middle;
+						display: inline-block;
+					}
+
+                    </style>
+                    <!-- 用户姓名 -->
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 7%; color: black;" class="xrequired"> 您 的 用 户 姓 名</div>
+                    </div>
+                    <div class="col-9 col-12-mobilep">
+                        <input type="text" name="name" value="" placeholder="{{user_info}}"
+                               style="color: black;" required="required">
+                    </div>
+
+                    <!-- 用户性别 -->
+                    <div class="col-3 col-12-mobilep">
+                        <div style=" color: black;" class="xrequired"> 您 的 性 别</div>
+                    </div>
+                    <div class="col-4 col-12-narrower">
+                        <input type="radio" id="priority-low" name="gender0" checked="" onclick="check0();">
+                        <label for="priority-low">男</label>
+                    </div>
+                    <div class="col-4 col-12-narrower">
+                        <input type="radio" id="priority-normal"  name="gender1" onclick="check1();">
+                        <label for="priority-normal">女</label>
+                    </div>
+
+                    <!-- 出生年月日 -->
+                    <div class="col-3 col-12-narrower">
+                        <div style="margin-top: 9%; color: black;"> 您 的 出 生 年 月 日</div>
+                    </div>
+                    <div class="col-2 col-12-narrower">
+                        <input type="text" name="year" value="" placeholder="2000" style="color: black;">
+                    </div>
+                    <div class="col-1 col-12-mobilep">
+                        <div style="margin-top: 30%; color: black;"> 年</div>
+                    </div>
+                    <div class="col-2 col-12-narrower">
+                        <input type="text" name="month" value="" placeholder="1" style="color: black;">
+                    </div>
+                    <div class="col-1 col-12-mobilep">
+                        <div style="margin-top: 30%; color: black;"> 月</div>
+                    </div>
+                    <div class="col-2 col-12-narrower">
+                        <input type="text" name="day" value="" placeholder="1" style="color: black;">
+                    </div>
+                    <div class="col-1 col-12-mobilep">
+                        <div style="margin-top: 30%; color: black;"> 日</div>
+                    </div>
+
+                    <!-- 密码 -->
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 7%; color: black;" class="xrequired" > 您 的 密 码 </div>
+                    </div>
+                    <div class="col-9 col-12-mobilep">
+                        <input type="password" name="psd" value="" placeholder=" 请 输 入 您 的 密 码 "
+                               required="required" style="color: black;">
+                    </div>
+
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 7%; color: black;" class="xrequired"> 确 认 密 码 </div>
+                    </div>
+                    <div class="col-9 col-12-mobilep">
+                        <input type="password" name="confirm_psd" value="" placeholder=" 请 再 次 输 入 您 的 密 码 "
+                               required="required" style="color: black;">
+                    </div>
+
+                    <!-- 联系电话 -->
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 9%; color: black;" class="xrequired"> 您 的 联 系 电 话</div>
+                    </div>
+                    <div class="col-9 col-12-mobilep">
+                        <input type="text" name="phone" value="" placeholder=" 请 输 入 您 的 联 系 电 话 "
+                               style="color: black;">
+                    </div>
+
+                    <!-- 电子邮箱 -->
+                    <div class="col-3 col-12-mobilep">
+                        <div style="margin-top: 9%; color: black;"> 您 的 电 子 邮 箱</div>
+                    </div>
+                    <div class="col-9 col-12-mobilep">
+                        <input type="text" name="email" value="" placeholder=" 请 输 入 您 的 电 子 邮 箱 地 址 "
+                               style="color: black;">
+                    </div>
+
+                    <div class="col-12">
+                        <ul class="actions special">
+                            <li><input type="submit" value=" 确 定 注 册 " class="fit" onclick="return _submit()"
+                                       style="color: white; background-color: #504F59;"></li>
+                            <li><input type="reset" value=" 重 置 信 息 " class="fit"
+                                       style="color: white; background-color: #9D918C;"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; 欢迎关注我们的平台 ~</li>
+            <li> 设计者: <a href="#"> 张思彤 & 张景深</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.dropotron.min.js"></script>
+<script src="../static/js/jquery.scrollex.min.js"></script>
+<script src="../static/js/browser.min.js"></script>
+<script src="../static/js/breakpoints.min.js"></script>
+<script src="../static/js/util.js"></script>
+<script src="../static/js/main.js"></script>
+<script language="JavaScript">
+    function check0(){
+        document.all.gender1.checked = false;
+    }
+    function check1(){
+        document.all.gender0.checked = false;
+    }
+    function _submit(){
+        var username = document.form_login.name.value;
+        var gender0 = document.form_login.gender0.value;
+        var gender1 = document.form_login.gender1.value;
+        var year = document.form_login.year.value;
+        var month = document.form_login.month.value;
+        var day = document.form_login.day.value;
+        var psd = document.form_login.psd.value;
+        var confirm_psd = document.form_login.confirm_psd.value;
+        var phone = document.form_login.phone.value;
+        if (username.length < 1) {
+            alert('请输入您的用户名');
+            return false;
+        }
+        if (year > 0 && year < 2024) {
+            alert('出生年份填写有误');
+            return false;
+        }
+        if (month > 0 && month < 13) {
+            alert('出生月份填写有误');
+            return false;
+        }
+        if (day > 0 && day < 32) {
+            alert('出生日填写有误');
+            return false;
+        }
+        if ( psd != confirm_psd) {
+            alert('两次输入的密码不一致');
+            return false;
+        }
+        if (phone.length != 11) {
+            alert('请输入正确格式的电话号码');
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
