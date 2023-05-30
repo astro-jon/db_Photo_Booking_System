@@ -1,0 +1,198 @@
+drop database if exists 数据库大作业;
+create database 数据库大作业 default charset = utf8mb4;
+use 数据库大作业;
+
+-- 创建客户表
+create table 客户 (
+	客户编号 int primary key auto_increment,
+    用户名 varchar(16) not null unique,
+    密码 varchar(16) not null,
+    电话号码 char(11) not null,
+    真实姓名 varchar(8) default '待完善',
+    性别 char(4) default '待完善',
+    出生日期 char(16) default '--',
+    微信号 varchar(32) default '待完善',
+    邮箱 varchar(32) default '待完善'
+);
+insert into 客户 (用户名, 密码, 性别, 电话号码) values('zst', 'zst', '女', '11111111111');
+insert into 客户 (用户名, 密码, 性别, 电话号码) values('zjs', 'zjs', '男', '22222222222');
+
+-- 创建订单表
+create table 订单 (
+	订单号 int primary key auto_increment,
+    下单客户编号 int not null,
+    商品信息 varchar(512) not null,
+    订单状态 varchar(16) not null,
+    下单时间 varchar(32) not null,
+    订单总金额 float default 0, 
+    订单余额 float default 0, 
+    附属信息 varchar(256),
+    foreign key(下单客户编号) references 客户(客户编号) on delete restrict
+);
+
+-- 创建支付信息
+create table 支付信息 (
+	支付流水号 int primary key auto_increment,
+    支付账号 int not null,
+    支付方式 varchar(8) not null,
+    支付费用 float not null,
+    支付类型 varchar(8) not null,
+    备注信息 varchar(128),
+    check (支付类型 in ('订金', '尾款')),
+    foreign key(支付账号) references 客户(客户编号) on delete restrict
+);
+
+create table 支付记录 (
+	支付信息流水号 int primary key,
+	支付订单号 int not null,
+    支付时间 varchar(32),
+    foreign key(支付信息流水号) references 支付信息(支付流水号) on delete restrict,
+    foreign key(支付订单号) references 订单(订单号) on delete restrict
+);
+
+create table 工作人员 (
+	员工编号 int primary key auto_increment ,
+    姓名 varchar(8) not null,
+    所属部门 char(8) not null,
+    电话号码 char(11) not null unique,
+    微信号 varchar(32) unique,
+    银行卡号 char(19) unique,
+    入职时间 varchar(16),
+    登录密码 varchar(16) not null,
+    个人介绍 varchar(128),
+    constraint 所属部门约束 check (所属部门 in ('摄影部', '化妆部', '后期部', '财务部'))
+);
+insert 工作人员 values (1,'小王1','摄影部','123342321','123342321','123838338939210','2001', '123', '会摄影');
+insert 工作人员 values (2,'小王2','摄影部','1233423211','1233423211','123838338939211','2001', '123', '会摄影');
+insert 工作人员 values (3,'小王3','摄影部','1233423212','1233423212','123838338939212','2001', '123', '会摄影');
+insert 工作人员 values (4,'小李1','化妆部','1233423223','1233423223','123838338939223','2001', '123', '会化妆');
+insert 工作人员 values (5,'小李2','化妆部','1233423224','1233423224','123838338939224','2001', '123', '会化妆');
+insert 工作人员 values (6,'小李3','化妆部','1233423225','1233423225','123838338939225','2001', '123', '会化妆');
+insert 工作人员 values (7,'小温1','后期部','1233423236','1233423236','123838338939236','2001', '123', '会后期');
+insert 工作人员 values (8,'小温2','后期部','1233423237','1233423237','123838338939237','2001', '123', '会后期');
+insert 工作人员 values (9,'小温3','后期部','1233423238','1233423238','123838338939238','2001', '123', '会后期');
+insert 工作人员 values (10,'小吴1','财务部','1233423249','1233423249','123838338939249','2001', '123', '会财务');
+insert 工作人员 values (11,'小吴2','财务部','12334232410','12334232410','1238383389392410','2001', '123', '会财务');
+insert 工作人员 values (12,'小吴3','财务部','12334232411','12334232411','1238383389392411','2001', '123', '会财务');
+
+create table 接单 (
+	所属订单号 int primary key,
+    接单时间 varchar(32),
+	摄影师编号 int not null,
+    化妆师编号 int not null,
+    后期师编号 int not null,
+    foreign key(所属订单号) references 订单(订单号) on delete restrict,
+    foreign key(摄影师编号) references 工作人员(员工编号) on delete restrict,
+    foreign key(化妆师编号) references 工作人员(员工编号) on delete restrict,
+    foreign key(后期师编号) references 工作人员(员工编号) on delete restrict
+);
+
+create table 处理 (
+	处理流水号 int primary key,
+    财务编号 int not null,
+    处理时间 varchar(32),
+    foreign key(处理流水号) references 支付信息(支付流水号) on delete restrict,
+    foreign key(财务编号) references 工作人员(员工编号) on delete restrict
+);
+
+create table 照片 (
+	照片编号 int primary key auto_increment,
+    照片url varchar(64) unique not null,
+    所属订单号 int not null,
+    拍摄地点 varchar(64) not null,
+    拍摄时间 varchar(32) not null,
+    成片时间 varchar(16),
+    foreign key(所属订单号) references 订单(订单号) on delete restrict
+);
+
+create table 写真作品集 (
+	作品集编号 int primary key auto_increment,
+    作品集名称 varchar(16),
+    照片编号序列集 varchar(1024) not null,
+    所属订单号 int not null,
+    生成时间 varchar(32),
+    foreign key(所属订单号) references 订单(订单号) on delete restrict
+);
+
+create table 评价 (
+	所属作品集编号 int primary key,
+	评价客户编号 int not null,
+    评价时间 varchar(32),
+    评价等级 int,
+    反馈建议 varchar(512),
+    foreign key(所属作品集编号) references 写真作品集(作品集编号) on delete restrict,
+    foreign key(评价客户编号) references 客户(客户编号) on delete restrict,
+    constraint 评价等级约束 check (评价等级 >=0 and 评价等级 <= 5)
+);
+
+create table 设备 (
+	设备编号 int primary key auto_increment,
+    分类 varchar(16) not null,
+    名称 varchar(16) not null,
+    购入时间 varchar(32) not null,
+    使用状态 char(6) default '未使用' not null,
+    constraint 使用状态约束 check (使用状态 in ('使用中', '未使用'))
+);
+
+create table 使用记录 (
+	使用员工编号 int,
+    使用设备编号 int primary key,
+    开始使用时间 varchar(32),
+    结束使用时间 varchar(32),
+    foreign key(使用员工编号) references 工作人员(员工编号) on delete restrict,
+    foreign key(使用设备编号) references 设备(设备编号) on delete restrict
+);
+
+create view 摄影师作品集
+as
+select 员工编号, 姓名, 作品集编号, 作品集名称, 照片编号序列集, 所属订单号, 生成时间 from (select * from 写真作品集 natural join 接单 
+where 写真作品集.所属订单号=接单.所属订单号) 
+as 临时表
+natural join 工作人员
+where 临时表.摄影师编号 = 工作人员.员工编号; 
+
+create view 人气摄影师榜单
+as
+select 摄影师编号, avg(评价等级) as 平均评价得分 from 
+(select * from (select * from 接单 natural join 写真作品集) 
+as 临时表
+natural join 评价 where 作品集编号 = 所属作品集编号)
+as 临时表2
+group by 摄影师编号
+order by 平均评价得分 desc;
+
+create view 化妆师作品集
+as
+select 员工编号, 姓名, 作品集编号, 作品集名称, 照片编号序列集, 所属订单号, 生成时间 from (select * from 写真作品集 natural join 接单 
+where 写真作品集.所属订单号=接单.所属订单号) 
+as 临时表
+natural join 工作人员
+where 临时表.化妆师编号 = 工作人员.员工编号; 
+
+create view 人气化妆师榜单
+as
+select 化妆师编号, avg(评价等级) as 平均评价得分 from 
+(select * from (select * from 接单 natural join 写真作品集) 
+as 临时表
+natural join 评价 where 作品集编号 = 所属作品集编号)
+as 临时表2
+group by 化妆师编号
+order by 平均评价得分 desc;
+
+create view 后期师作品集
+as
+select 员工编号, 姓名, 作品集编号, 作品集名称, 照片编号序列集, 所属订单号, 生成时间 from (select * from 写真作品集 natural join 接单 
+where 写真作品集.所属订单号=接单.所属订单号) 
+as 临时表
+natural join 工作人员
+where 临时表.后期师编号 = 工作人员.员工编号; 
+
+create view 人气后期师榜单
+as
+select 后期师编号, avg(评价等级) as 平均评价得分 from 
+(select * from (select * from 接单 natural join 写真作品集) 
+as 临时表
+natural join 评价 where 作品集编号 = 所属作品集编号)
+as 临时表2
+group by 后期师编号
+order by 平均评价得分 desc;
